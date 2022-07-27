@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags%}
+{% block title %}
+  Sign Out
+{% endblock title %}
+{% block content %}
+  <div class="col-sm-6 container text-secondary">
+    <div class="card bg-white border-white">
+      <div class="card-header bg-transparent">
+        Log Out
+      </div>
+      <div class="card-body">
+        <p class="card-text">Are you sure you want to sign out?</p>
+        <form method="post">
+          <div class="form-row align-items-center">
+            {% csrf_token %}
+            {{ form|crispy }}
+          </div>
+          <button class="btn btn-sm btn-outline-secondary mt-2" type="submit">Sign Out</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

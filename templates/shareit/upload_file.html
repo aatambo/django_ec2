@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+	Upload File
+{% endblock title %}
+{% block content %}
+	<div class="bg-white col-md-8 container">
+		<h5 class="card-body card-title text-danger">Upload A File To Share</h5>
+		<form method="post" enctype="multipart/form-data" class="card-body">
+			{% csrf_token %}
+			<div class="row row-cols-1 row-cols-md-2 g-2">
+				{% for field in form %}
+					<div class="col-md">
+						{{field|as_crispy_field}}
+					</div>
+				{% endfor %}
+				{{ formset.management_form }}
+				{% for xform in formset %}
+					{% for field in xform %}
+						<div class="col-md">
+							{{field|as_crispy_field}}
+						</div>
+					{% endfor %}
+				{% endfor %}
+			</div>
+			<button class="btn btn-info mt-2 mb-2 form-control" type="submit">Submit</button>
+		</form>
+	</div>
+{% endblock content %}

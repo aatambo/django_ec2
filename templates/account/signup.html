@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load account crispy_forms_tags%}
+{% block title %}
+  Sign Up
+{% endblock title %}
+{% block extrastyle %}
+  a:link { text-decoration: none; }
+  a:visited { text-decoration: none; }
+  a:hover { text-decoration: none; }
+  a:active { text-decoration: none; }
+{% endblock extrastyle %}
+{% block content %}
+  <div class="col-md-8 container text-secondary">
+    <div class="card bg-white border-white"">
+      <div class="card-header bg-transparent">
+        Create Account
+      </div>
+      <div class="card-body">
+        <form method="post">
+          <div class="form-row align-items-center">
+            {% csrf_token %}
+            <div class="row row-cols-1 row-cols-md-2 g-2">
+              {% for field in form %}
+                <div class="col-md">
+                  {{field|as_crispy_field}}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <button class="btn btn-secondary mt-2 form-control" type="submit">Create My Account</button>
+        </form>
+      </div>
+      <div class="card-footer bg-transparent">
+        <a class='card-link text-decoration-none' href="{{ login_url }}">If you already have an account, Sign in here.</a><br>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
